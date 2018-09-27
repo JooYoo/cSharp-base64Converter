@@ -1,0 +1,7 @@
+C:\Users\yzhu\Desktop\Base64Converter\Base64Converter\bin\Debug\Base64Converter.exe.config
+C:\Users\yzhu\Desktop\Base64Converter\Base64Converter\bin\Debug\Base64Converter.exe
+C:\Users\yzhu\Desktop\Base64Converter\Base64Converter\bin\Debug\Base64Converter.pdb
+C:\Users\yzhu\Desktop\Base64Converter\Base64Converter\obj\Debug\Base64Converter.csprojAssemblyReference.cache
+C:\Users\yzhu\Desktop\Base64Converter\Base64Converter\obj\Debug\Base64Converter.csproj.CoreCompileInputs.cache
+C:\Users\yzhu\Desktop\Base64Converter\Base64Converter\obj\Debug\Base64Converter.exe
+C:\Users\yzhu\Desktop\Base64Converter\Base64Converter\obj\Debug\Base64Converter.pdb
