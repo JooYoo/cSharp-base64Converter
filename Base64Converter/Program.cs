@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,11 +17,22 @@ namespace Base64Converter
                 var userInput = Console.ReadLine();
 
                 byte[] bytes = Encoding.UTF8.GetBytes(userInput);
-                for (int i = 0; i < bytes.Length; i += 3)
+
+                //TODO: bytes.length % 3 == 0 
+                var newBytes = new List<Byte>();
+                foreach (var item in bytes)
                 {
+                    newBytes.Add(item);
+                }
+              
+                if (newBytes.Count % 3 != 0 )
+                {
+                    newBytes.Add(0);
+                }
 
-
-                    List<string> subBase64 = ThreeBytesToString(bytes[i], bytes[i + 1], bytes[i + 2]);
+                for (int i = 0; i < newBytes.Count; i += 3)
+                {
+                    List<string> subBase64 = ThreeBytesToString(newBytes[i], newBytes[i + 1], newBytes[i + 2]);
                     masterbase64Dec.AddRange(subBase64);
 
                 }
@@ -78,57 +89,48 @@ namespace Base64Converter
             return base64Dec;
         }
 
-        static string IndexToBaseString(int index)
+        static char IndexToBaseString(int value)
         {
-            string[] base64 = new string[64]
-            {
-                "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
-                "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
-                "0","1","2","3","4","5","6","7","8","9",
-                "+","/"
-            };
-
-            if (base64[index] != null)
-            {
-                return base64[index];
-            }
-
-            return ".";
-
-
-            //// "A" to "Z"
-            //if (index > 64 && index < 91)
+            //string[] base64 = new string[64]
             //{
+            //    "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
+            //    "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+            //    "0","1","2","3","4","5","6","7","8","9",
+            //    "+","/"
+            //};
 
-            //  //  return ((char)index).ToString();
-            //}
-
-            //// "a" to "z"
-            //if (index > 96 && index < 123)
+            //if (base64[index] != null)
             //{
-            //    //return ((char)index).ToString();
+            //    return base64[index];
             //}
-
-            //// "0" to "9"
-            //if (index > 47 && index < 58)
-            //{
-            //   // return ((char) index).ToString();
-            //}
-
-            //// "+"
-            //if (index == 43)
-            //{
-            //   // return "+";
-            //}
-
-            //// "/"
-            //if (index == 47)
-            //{
-            //   // return "/";
-            //}
-
 
             //return ".";
+
+            if (value < 0)
+            {
+                return '.';
+            }
+            if (value < 26)
+            {
+                return (char)('A' + value);
+            }
+            else if (value < 52)
+            {
+                return (char)('a' + value - 26);
+            }
+            else if (value < 62)
+            {
+                return (char)('0' + value - 52);
+            }
+            else if (value == 62)
+            {
+                return '+';
+            }
+            else if (value == 63)
+            {
+                return '/';
+            }
+            return '.';
         }
     }
 }
